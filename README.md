@@ -1,15 +1,19 @@
 # usil-packaging
-Ce depot contient des packaging RPM pour RedHat, CentOS pour des outils liés à Usine Logicielle
+Ce depot contient des projets pour construire des package RPM pour RedHat, CentOS pour des outils liés à Usine Logicielle.
 
 ## Sujet
 Industrialiser l'installation d'une Usine Logicielle.
 
 ## Existants
 Il y a déjà des projets permettant de générer des RPM pour Jenkins et Sonar.
-Mais je trouve que les RPM ne sont pas complets et ne répondent pas au problèmatique Entreprise.
+Mais je trouve que les RPM ne sont pas complets et ils ne répondent pas au problèmatique Entreprise, c'est à dire de changer le paramétrage de manière dynamique sans modifier la configuration du RPM sachant que le RPM peut être installé sur des environnements différents : qualification, production.
 
 ## Objectif
 * A partir des binaires applicatifs, de générer des packages installables sur les OS.
+
+## Enjeu
+Fournir une installation automatique et adaptable aux environnments cibles pour simplifier l'installation et l'évolution d'une PIC dans un environnement de production.
+L'automatisation de l'installation n'évite pas de devoir mettre en plan un plan de maintenance de la PIC et de regarder les impacts d'une montée de version des outils.
 
 ## Cibles
 ### Outils
@@ -30,10 +34,10 @@ Je propose ici une solution à base de Maven/Nexus pour construire les RPM :
 * Utilisation du plugin Maven Build Helper
 
 ### avec une Usine Logicielle à base de Jenkins, Nexus
-Pour construire les RPM de manière industrielle, il faudra :
+Pour construire les RPM de manière industriel, il faudra :
 * un dépot Nexus pour stocker les applications SonarQube, Jenkins, Nexus ;
 * un dépôt Nexus pour stocker les RPM généré et ce dépôt sera un dépôt Yum ;
-* un build par application exécutée dans un Job Jenkins.
+* un build par application exécuté dans un Job Jenkins.
 
 ### sans une Usine Logicielle
 Pour générer une première fois les RPM sans Usine Logicielle, il faudra mettre :
@@ -54,4 +58,3 @@ Les RPM seront configurables :
 * une partie lors de la construction contenue dans le dépôt de source
 * une partie lors de l'installation contenue dans le fichier stocké dans system.d
 * une partie lors du démarrage du service
-
